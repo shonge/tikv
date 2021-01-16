@@ -3248,8 +3248,7 @@ where
             replication_status: self.region_replication_status(),
         });
 
-        // if !self.is_region_size_or_keys_none() {
-        if true {
+        if !self.is_leader() || !self.is_region_size_or_keys_none() {
             info!(
                 "send region heartbeat to scheduler";
                 "region_id" => self.region_id,

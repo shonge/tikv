@@ -149,6 +149,7 @@ impl<T: Display + Send + 'static> Worker<T> {
             return Ok(());
         }
 
+        //TODO: jchen 启动一个worker(pd_scheduler)
         let rx = receiver.take().unwrap();
         let h = Builder::new()
             .name(thd_name!(self.scheduler.name.as_ref()))
