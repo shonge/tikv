@@ -3248,12 +3248,13 @@ where
             replication_status: self.region_replication_status(),
         });
 
-        info!(
-            "send region heartbeat to scheduler";
-            "region_id" => self.region_id,
-            "is_peer:  " => approximate_size==1,
-        );
-        if !self.is_region_size_or_keys_none() {
+        // if !self.is_region_size_or_keys_none() {
+        if true {
+            info!(
+                "send region heartbeat to scheduler";
+                "region_id" => self.region_id,
+                "is_peer:  " => approximate_size==1,
+            );
             if let Err(e) = ctx.pd_scheduler.schedule(task) {
                 error!(
                     "failed to notify pd";
