@@ -228,6 +228,7 @@ where
                 region.get_id(),
                 KeysInfoFormatter(split_keys.iter())
             ),
+            //store收到pd发送的heartbeat
             Task::Heartbeat(ref hb_task) => write!(
                 f,
                 "heartbeat for region {:?}, leader {}, replication status {:?}",
@@ -634,6 +635,13 @@ where
         self.store_stat
             .region_keys_read
             .observe(region_stat.read_keys as f64);
+
+        //TODO: jchen 这里真正发送给pd
+        info!(
+            "send region heartbeat to PD";
+            "region_id" => region.get_id(),
+            "is_peer:  " => region_stat.approximate_size==1,
+        );
 
         let f = self
             .pd_client
@@ -1129,6 +1137,7 @@ where
                         last_report_ts,
                     )
                 };
+                //TODO: jchen 从scheduler拿到peer要发送的regionHeartbeat
                 self.handle_heartbeat(
                     hb_task.term,
                     hb_task.region,

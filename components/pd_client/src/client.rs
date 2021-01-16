@@ -490,6 +490,7 @@ impl PdClient for RpcClient {
         req.set_header(self.header());
         req.set_region(region);
         req.set_leader(leader);
+        //TODO: jchen 发送出去的底层实现
         req.set_down_peers(region_stat.down_peers.into());
         req.set_pending_peers(region_stat.pending_peers.into());
         req.set_bytes_written(region_stat.written_bytes);

@@ -510,10 +510,12 @@ where
                 PeerMsg::SignificantMsg(msg) => self.on_significant_msg(msg),
                 PeerMsg::CasualMessage(msg) => self.on_casual_msg(msg),
                 PeerMsg::Start => self.start(),
+                //TODO: jchen
                 PeerMsg::HeartbeatPd => {
-                    if self.fsm.peer.is_leader() {
-                        self.register_pd_heartbeat_tick()
-                    }
+                    // if self.fsm.peer.is_leader() {
+                    //     self.register_pd_heartbeat_tick()
+                    // }
+                    self.register_pd_heartbeat_tick()
                 }
                 PeerMsg::Noop => {}
                 PeerMsg::UpdateReplicationMode => self.on_update_replication_mode(),
@@ -1093,9 +1095,10 @@ where
         // to allow it to campaign quickly when abnormal situation is detected.
         if !self.fsm.peer.is_leader() {
             self.register_raft_base_tick();
-        } else {
-            self.register_pd_heartbeat_tick();
-        }
+        } //else {
+            // self.register_pd_heartbeat_tick();
+        // }
+        self.register_pd_heartbeat_tick();
     }
 
     fn on_apply_res(&mut self, res: ApplyTaskRes<EK::Snapshot>) {
@@ -3696,9 +3699,10 @@ where
         }
         self.fsm.peer.check_peers();
 
-        if !self.fsm.peer.is_leader() {
-            return;
-        }
+        // if !self.fsm.peer.is_leader() {
+        //     return;
+        // }
+        //发送region heartbeat 给pd
         self.fsm.peer.heartbeat_pd(self.ctx);
         if self.ctx.cfg.hibernate_regions && self.fsm.peer.replication_mode_need_catch_up() {
             self.register_pd_heartbeat_tick();

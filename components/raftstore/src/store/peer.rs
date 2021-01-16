@@ -3229,6 +3229,12 @@ where
     }
 
     pub fn heartbeat_pd<T>(&mut self, ctx: &PollContext<EK, ER, T>) {
+        //TODO: jchen 发送region heartbeat 给pd
+        // 设置一个特殊标记
+        let mut approximate_size = 1;
+        if self.is_leader() {
+            approximate_size = self.approximate_size.unwrap_or_default();
+        }
         let task = PdTask::Heartbeat(HeartbeatTask {
             term: self.term(),
             region: self.region().clone(),
@@ -3237,10 +3243,16 @@ where
             pending_peers: self.collect_pending_peers(ctx),
             written_bytes: self.peer_stat.written_bytes,
             written_keys: self.peer_stat.written_keys,
-            approximate_size: self.approximate_size.unwrap_or_default(),
+            approximate_size,
             approximate_keys: self.approximate_keys.unwrap_or_default(),
             replication_status: self.region_replication_status(),
         });
+
+        info!(
+            "send region heartbeat to scheduler";
+            "region_id" => self.region_id,
+            "is_peer:  " => approximate_size==1,
+        );
         if !self.is_region_size_or_keys_none() {
             if let Err(e) = ctx.pd_scheduler.schedule(task) {
                 error!(
@@ -3251,6 +3263,11 @@ where
                 );
             }
             return;
+        }
+
+        //TODO: jchen
+        if !self.is_leader() {
+            return
         }
 
         if self.pending_pd_heartbeat_tasks.load(Ordering::SeqCst) > 2 {
