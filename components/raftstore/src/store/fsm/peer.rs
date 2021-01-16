@@ -3699,11 +3699,12 @@ where
         }
         self.fsm.peer.check_peers();
 
-        // if !self.fsm.peer.is_leader() {
-        //     return;
-        // }
         //发送region heartbeat 给pd
         self.fsm.peer.heartbeat_pd(self.ctx);
+
+        if !self.fsm.peer.is_leader() {
+            return;
+        }
         if self.ctx.cfg.hibernate_regions && self.fsm.peer.replication_mode_need_catch_up() {
             self.register_pd_heartbeat_tick();
         }

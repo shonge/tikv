@@ -3252,6 +3252,7 @@ where
             info!(
                 "send region heartbeat to scheduler";
                 "region_id" => self.region_id,
+                "peer_id" => self.peer.get_id(),
                 "is_peer:  " => approximate_size==1,
             );
             if let Err(e) = ctx.pd_scheduler.schedule(task) {

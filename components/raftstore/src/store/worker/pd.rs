@@ -640,6 +640,7 @@ where
         info!(
             "send region heartbeat to PD";
             "region_id" => region.get_id(),
+            "peer_id" => peer.get_id(),
             "is_peer:  " => region_stat.approximate_size==1,
         );
 
