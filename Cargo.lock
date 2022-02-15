@@ -931,9 +931,9 @@ dependencies = [
  "cfg-if 1.0.0",
  "crossbeam-channel",
  "crossbeam-deque",
- "crossbeam-epoch 0.9.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossbeam-epoch 0.9.3",
  "crossbeam-queue",
- "crossbeam-utils 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossbeam-utils 0.8.3",
 ]
 
 [[package]]
@@ -943,7 +943,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "06ed27e177f16d65f0f0c22a213e17c696ace5dd64b14258b52f9417ccb52db4"
 dependencies = [
  "cfg-if 1.0.0",
- "crossbeam-utils 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossbeam-utils 0.8.3",
 ]
 
 [[package]]
@@ -953,8 +953,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6455c0ca19f0d2fbf751b908d5c55c1f5cbc65e03c4225427254b46890bdde1e"
 dependencies = [
  "cfg-if 1.0.0",
- "crossbeam-epoch 0.9.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "crossbeam-utils 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossbeam-epoch 0.9.3",
+ "crossbeam-utils 0.8.3",
 ]
 
 [[package]]
@@ -964,7 +964,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2584f639eb95fea8c798496315b297cf81b9b58b6d30ab066a75455333cf4b12"
 dependencies = [
  "cfg-if 1.0.0",
- "crossbeam-utils 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossbeam-utils 0.8.3",
  "lazy_static",
  "memoffset",
  "scopeguard",
@@ -972,11 +972,11 @@ dependencies = [
 
 [[package]]
 name = "crossbeam-epoch"
-version = "0.9.3"
-source = "git+https://github.com/tikv/crossbeam.git?branch=tikv-5.0#e0e083d062649484188b7337fe388fd12f2c8d94"
+version = "0.9.4"
+source = "git+https://github.com/shonge/crossbeam.git?branch=tikv-5.0-fix-dependent#3bccd15e486a5b027539311484689aa309dfddbd"
 dependencies = [
  "cfg-if 1.0.0",
- "crossbeam-utils 0.8.3 (git+https://github.com/tikv/crossbeam.git?branch=tikv-5.0)",
+ "crossbeam-utils 0.8.4",
  "lazy_static",
  "memoffset",
  "scopeguard",
@@ -989,17 +989,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0f6cb3c7f5b8e51bc3ebb73a2327ad4abdbd119dc13223f14f961d2f38486756"
 dependencies = [
  "cfg-if 1.0.0",
- "crossbeam-utils 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossbeam-utils 0.8.3",
 ]
 
 [[package]]
 name = "crossbeam-skiplist"
 version = "0.0.0"
-source = "git+https://github.com/tikv/crossbeam.git?branch=tikv-5.0#e0e083d062649484188b7337fe388fd12f2c8d94"
+source = "git+https://github.com/shonge/crossbeam.git?branch=tikv-5.0-fix-dependent#3bccd15e486a5b027539311484689aa309dfddbd"
 dependencies = [
  "cfg-if 1.0.0",
- "crossbeam-epoch 0.9.3 (git+https://github.com/tikv/crossbeam.git?branch=tikv-5.0)",
- "crossbeam-utils 0.8.3 (git+https://github.com/tikv/crossbeam.git?branch=tikv-5.0)",
+ "crossbeam-epoch 0.9.4",
+ "crossbeam-utils 0.8.4",
  "scopeguard",
 ]
 
@@ -1027,8 +1027,8 @@ dependencies = [
 
 [[package]]
 name = "crossbeam-utils"
-version = "0.8.3"
-source = "git+https://github.com/tikv/crossbeam.git?branch=tikv-5.0#e0e083d062649484188b7337fe388fd12f2c8d94"
+version = "0.8.4"
+source = "git+https://github.com/shonge/crossbeam.git?branch=tikv-5.0-fix-dependent#3bccd15e486a5b027539311484689aa309dfddbd"
 dependencies = [
  "autocfg",
  "cfg-if 1.0.0",
@@ -1212,8 +1212,8 @@ dependencies = [
 
 [[package]]
 name = "encoding_rs"
-version = "0.8.29"
-source = "git+https://github.com/xiongjiwei/encoding_rs.git?rev=68e0bc5a72a37a78228d80cd98047326559cf43c#68e0bc5a72a37a78228d80cd98047326559cf43c"
+version = "0.8.30"
+source = "git+https://github.com/shonge/encoding_rs.git?branch=golang-fix-dependent#e8585f6db1aa11479d7002bade7a8803a55cc39d"
 dependencies = [
  "cfg-if 1.0.0",
 ]
@@ -1525,7 +1525,7 @@ dependencies = [
  "bcc",
  "collections",
  "crc32fast",
- "crossbeam-utils 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossbeam-utils 0.8.3",
  "fs2",
  "lazy_static",
  "libc 0.2.106",
@@ -3927,7 +3927,7 @@ checksum = "9ab346ac5921dc62ffa9f89b7a773907511cdfa5490c572ae9be1be33e8afa4a"
 dependencies = [
  "crossbeam-channel",
  "crossbeam-deque",
- "crossbeam-utils 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "crossbeam-utils 0.8.3",
  "lazy_static",
  "num_cpus",
 ]
@@ -4009,7 +4009,7 @@ checksum = "0460542b551950620a3648c6aa23318ac6b3cd779114bd873209e6e8b5eb1c34"
 dependencies = [
  "base64",
  "bytes 1.0.1",
- "encoding_rs 0.8.29 (registry+https://github.com/rust-lang/crates.io-index)",
+ "encoding_rs 0.8.29",
  "futures-core",
  "futures-util",
  "http",
@@ -5373,7 +5373,7 @@ dependencies = [
  "chrono-tz",
  "codec",
  "collections",
- "encoding_rs 0.8.29 (git+https://github.com/xiongjiwei/encoding_rs.git?rev=68e0bc5a72a37a78228d80cd98047326559cf43c)",
+ "encoding_rs 0.8.30",
  "error_code",
  "hex 0.4.2",
  "kvproto",
